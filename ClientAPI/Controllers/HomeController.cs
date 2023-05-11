@@ -47,7 +47,7 @@ namespace ClientAPI.Controllers
 
                     campaigns = readTask.Result;
                 }
-                else //web api sent error response 
+                else //web api sent error response
                 {
                     //log response status here..
 

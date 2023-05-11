@@ -19,9 +19,10 @@
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@item.name</h5>
-                    <p>Start date: @item.startDate</p>
-                    <p>End date: @item.endDate </p>
                     <p class="card-text">@item.description</p>
+                    <em style="font-size: 0.8rem">Start date: @item.startDate.ToShortDateString()</em>
+                    <br />
+                    <em style="font-size: 0.8rem">End date: @item.endDate.ToShortDateString() </em>
                     <a asp-controller="Campaign" asp-action="CampaignDetails" class="btn btn-primary">Visit</a>
                 </div>
             </div>
