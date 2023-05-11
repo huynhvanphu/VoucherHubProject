@@ -1,0 +1,12 @@
+﻿@model List<Customer>
+
+
+<partial name="_SuccessMessage" />
+
+@foreach(var customer in Model)
+{
+    <p>@customer.Id</p>
+    <p>@customer.Name</p>
+    <p>@customer.Address</p>
+ }
+

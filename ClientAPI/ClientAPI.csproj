@@ -4,4 +4,28 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Microsoft.AspNet.WebApi.Client" />
+    <None Remove="Pages\" />
+    <None Remove="MediaFiles\" />
+    <None Remove="Services\" />
+    <None Remove="Views\Welcome\" />
+    <None Remove="Views\Customer\" />
+    <None Remove="Views\StoreOwner\" />
+    <None Remove="Views\Admin\" />
+    <None Remove="Views\Campaign\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+    <Folder Include="MediaFiles\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Welcome\" />
+    <Folder Include="Views\Customer\" />
+    <Folder Include="Views\StoreOwner\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Campaign\" />
+  </ItemGroup>
 </Project>

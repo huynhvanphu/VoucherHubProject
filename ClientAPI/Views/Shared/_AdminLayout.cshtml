@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "_Layout";
+}
+<div id="wrapper" style="margin-top: -1rem;">
+    <div id="sidebar-wrapper">
+        <aside id="sidebar">
+            <ul id="sidemenu" class="sidebar-nav">
+                <li>
+                    <a asp-controller="Admin" asp-action="Index">
+                        <span class="sidebar-icon"><i class="fa fa-dashboard"></i></span>
+                        <span class="sidebar-title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-2">
+                        <span class="sidebar-icon"><i class="fa fa-users"></i></span>
+                        <span class="sidebar-title">Management</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul id="submenu-2" class="panel-collapse collapse panel-switch" role="menu">
+                        <li><a href="#">Customers</a></li>
+                        <li><a href="#">Store Owners</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
+                        <span class="sidebar-icon"><i class="fa fa-newspaper-o"></i></span>
+                        <span class="sidebar-title">Blog</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Posts</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right"></i>Comments</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="sidebar-icon"><i class="fa fa-database"></i></span>
+                        <span class="sidebar-title">Data</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="sidebar-icon"><i class="fa fa-terminal"></i></span>
+                        <span class="sidebar-title">Config</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <main id="page-content-wrapper" role="main">
+        @RenderBody()
+    </main>
+</div> 

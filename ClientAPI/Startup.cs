@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClientAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,9 +14,12 @@ namespace ClientAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public static string RootPath { get; set; }
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            RootPath = env.ContentRootPath; //Cau hinh root path de truy cap media files
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +28,8 @@ namespace ClientAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddSingleton<CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,13 +50,15 @@ namespace ClientAPI
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();  //Xac thuc danh tinh
+            app.UseAuthorization();     //Xac thuc quyen truy cap
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages(); //Tich hop Razor Pages vao trong mo hinh MVC
             });
         }
     }

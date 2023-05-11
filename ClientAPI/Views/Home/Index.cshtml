@@ -1,8 +1,30 @@
-﻿@{
+﻿@model IEnumerable<Campaign>
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Find store..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2">Search</span>
+    </div>
+</div>
+<div class="p-2 text-center">
+    <h1 class="display-4">Choose your store to get the best deal!</h1>
+</div>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card p-2 m-3" style="width: 14rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.name</h5>
+                    <p>Start date: @item.startDate</p>
+                    <p>End date: @item.endDate </p>
+                    <p class="card-text">@item.description</p>
+                    <a asp-controller="Campaign" asp-action="CampaignDetails" class="btn btn-primary">Visit</a>
+                </div>
+            </div>
+        }
+    </div>
 </div>
