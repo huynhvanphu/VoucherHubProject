@@ -11,7 +11,7 @@ namespace BusinessAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CampaignController : Controller
+    public class CampaignController : ControllerBase
     {
         // GET: api/values
         [HttpGet]
