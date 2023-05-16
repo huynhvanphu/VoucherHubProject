@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessAPI.Migrations
 {
     [DbContext(typeof(VoucherHubDbContext))]
-    [Migration("20230516145125_DbInit")]
+    [Migration("20230516145737_DbInit")]
     partial class DbInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

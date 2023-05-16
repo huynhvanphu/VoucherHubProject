@@ -24,6 +24,10 @@ namespace DataAccessAPI.Data
 
         DbSet <Voucher> Vouchers { set; get; }
 
+        DbSet<CustomerNontification> CustomerNontifications { set; get; }
+
+        DbSet<StoreOwnerNontification> StoreOwnerNontifications { set; get; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
