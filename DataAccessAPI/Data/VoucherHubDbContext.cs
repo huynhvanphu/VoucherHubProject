@@ -12,6 +12,18 @@ namespace DataAccessAPI.Data
 
         DbSet<Customer> Customers { set; get; }
 
+        DbSet<Account> Accounts { set; get; }
+
+        DbSet<Campaign> Campaigns { set; get; }
+
+        DbSet<Customer_Campaign> Customer_Campaigns { set; get; }
+
+        DbSet<StoreOwner> StoreOwners { set; get; }
+
+        DbSet<CampaignGame> CampaignGames { set; get; }
+
+        DbSet <Voucher> Vouchers { set; get; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
