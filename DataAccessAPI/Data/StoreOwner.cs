@@ -17,7 +17,6 @@ namespace DataAccessAPI.Data
         public string Name { set; get; }
 
         [StringLength(255)]
-        [Required]
         public string Address { set; get; }
 
         [StringLength(12)]
@@ -29,6 +28,9 @@ namespace DataAccessAPI.Data
         [StringLength(255)]
         public string ImagePath { set; get; }
 
+        [StringLength(100)]
+        public string Email { set; get; }
+
         public DateTime CreatedAt { set; get; }
 
         //FK
@@ -38,7 +40,7 @@ namespace DataAccessAPI.Data
 
         public Guid? AccountId { set; get; }
         [ForeignKey("FK_StoreOwner_Account")]
-        public Account Account { set; get; }
+        public Account account { set; get; }
 
         //Reverse
         public virtual ICollection<Campaign> Campaigns { set; get; }

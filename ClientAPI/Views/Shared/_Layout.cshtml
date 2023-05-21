@@ -1,4 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor accessor
+@{
+    var accountSession = accessor.HttpContext.Session.GetString("account") as string;
+
+    var accountName = accessor.HttpContext.Session.GetString("accountname") as string;
+
+    var account = new Account();
+
+    if (!string.IsNullOrEmpty(accountSession))
+    {
+        account = JsonConvert.DeserializeObject<Account>(accountSession);
+    }
+ }
+    
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,49 +40,63 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    Login
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" asp-controller="Customer" asp-action="Login">Customer</a>
-                                    <a class="dropdown-item" asp-controller="StoreOwner" asp-action="Login">Store Owner</a>
+                        @if (string.IsNullOrEmpty(accountSession))
+                        {
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        Login
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-controller="Customer" asp-action="Login">Customer</a>
+                                        <a class="dropdown-item" asp-controller="StoreOwner" asp-action="Login">Store Owner</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    Sign Up
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" asp-controller="Customer" asp-action="SignUp">Customer</a>
-                                    <a class="dropdown-item" asp-controller="StoreOwner" asp-action="SignUp">Store Owner</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        Sign Up
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-controller="Customer" asp-action="SignUp">Customer</a>
+                                        <a class="dropdown-item" asp-controller="StoreOwner" asp-action="SignUp">Store Owner</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        }
                     </ul>
                 </div>
-                <div class="dropdown">
-                    <a class="btn" data-toggle="dropdown">
-                        <i class="fa fa-bell" aria-hidden="true"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-controller="Customer" asp-action="SignUp">Customer</a>
-                        <a class="dropdown-item" asp-controller="StoreOwner" asp-action="SignUp">Store Owner</a>
+
+                @*Account*@
+                @if (!string.IsNullOrEmpty(accountSession))
+                {
+                   
+                    @*End Nontification*@
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i> @accountName
+                        </a>
+                        @if(account.Role == AccountRole.Customer)
+                        {
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Customer" asp-action="Index">Account</a>
+                                <a class="dropdown-item" asp-controller="Customer" asp-action="Index">Voucher List</a>
+                                <a class="dropdown-item" asp-controller="StoreOwner" asp-action="Logout">Logout</a>
+                            </div>
+                        }
+                        @if (account.Role == AccountRole.StoreOwner)
+                        {
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="StoreOwner" asp-action="Index">Your Store</a>
+                                <a class="dropdown-item" asp-controller="StoreOwner" asp-action="Index">Campaign Management</a>
+                                <a class="dropdown-item" asp-controller="StoreOwner" asp-action="Logout">Logout</a>
+                            </div>
+                        }
+
                     </div>
-                </div>
-                <div class="dropdown">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i> HUYNH VAN PHU
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-controller="Customer" asp-action="SignUp">Account</a>
-                        <a class="dropdown-item" asp-controller="StoreOwner" asp-action="SignUp">Vouchers</a>
-                        <a class="dropdown-item" asp-controller="StoreOwner" asp-action="SignUp">Logout</a>
-                    </div>
-                </div>
+                }
+                @*End Account*@
             </div>
         </nav>
     </header>

@@ -60,7 +60,7 @@ namespace ClientAPI.Controllers
                     ModelState.AddModelError(string.Empty, "Wrong username or password");
                 }
             }
-            if (account != null && (username == account.username && password == account.password))
+            if (account != null && (username == account.Username && password == account.Password))
             {
                 return View();
 

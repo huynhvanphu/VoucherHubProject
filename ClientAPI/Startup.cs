@@ -29,7 +29,18 @@ namespace ClientAPI
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+            services.AddMvc();
+            services.AddHttpContextAccessor();
+            services.AddSession(option =>
+            {
+                option.Cookie.Name = "VoucherHub";
+                option.IdleTimeout = new TimeSpan(0, 60, 0);
+
+            });
             services.AddSingleton<CustomerService>();
+            services.AddSingleton<StoreOwnerService>();
+            services.AddSingleton<SystemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,12 +56,17 @@ namespace ClientAPI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSession();
+
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthentication();  //Xac thuc danh tinh
+
             app.UseAuthorization();     //Xac thuc quyen truy cap
 
             app.UseEndpoints(endpoints =>

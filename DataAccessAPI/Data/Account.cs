@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DataAccessAPI.Data.ClientModels;
 
 namespace DataAccessAPI.Data
 {
@@ -17,5 +18,8 @@ namespace DataAccessAPI.Data
         [Required]
         [StringLength(20)]
         public string Password { set; get; }
+
+        [Range(1,3)]
+        public AccountRole Role { set; get; }
     }
 }

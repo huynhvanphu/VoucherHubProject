@@ -19,7 +19,7 @@ namespace BusinessAPI.Controllers
         [HttpGet]
         public Account Get()
         {
-            var account = new Account() { username = "admin", password = "admin" };
+            var account = new Account() { Username = "admin", Password = "admin" };
 
             return account;
         }

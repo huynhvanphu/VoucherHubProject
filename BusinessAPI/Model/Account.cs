@@ -3,8 +3,10 @@ namespace BusinessAPI.Model
 {
     public class Account
     {
-        public string username { set; get; }
+        public Guid Id { set; get; }
 
-        public string password { set; get; }
+        public string Username { set; get; }
+
+        public string Password { set; get; }
     }
 }
